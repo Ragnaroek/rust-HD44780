@@ -1,0 +1,12 @@
+[package]
+name = "hd44780_test"
+version = "0.1.0"
+authors = [ "Michael Bohn <spaceodyssey@gmx.de>" ]
+description = "Rust library to control a Hitachi HD44780"
+license = "GPL-3.0"
+repository = "https://github.com/Ragnaroek/rust-HD44780"
+
+[lib]
+name = "hd44780"
+
+[dependencies]
