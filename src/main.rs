@@ -6,7 +6,8 @@ use hd44780::hosts::RaspberryPiBPlus;
 
 fn main() {
     let host = RaspberryPiBPlus::new();
-    let display = HD44780::new(Box::new(host));
+    let mut display = HD44780::new(Box::new(host));
 
+    display.init();
     display.write_string("hello!");
 }
