@@ -41,7 +41,8 @@ fn io(file_opt: &mut Option<File>, b: bool) {
         Some(ref mut file) => {
             file.write_all(out).unwrap();
             file.flush().unwrap();
-            println!("wrote {:?} to {:?}", out, file)},
+            ()
+        },
         None => println!("some io not writable")
     }
     return;

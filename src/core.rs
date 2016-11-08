@@ -3,6 +3,11 @@ use std::time::Duration;
 use std::io::Error;
 use super::hosts::{HD44780Host, Mode};
 
+pub enum DisplayRow {
+    R0,
+    R1
+}
+
 pub struct HD44780 {
     host: Box<HD44780Host>
 }
@@ -85,6 +90,13 @@ impl HD44780 {
         }
 
         self.toggle_enable();
+    }
+
+    pub fn row_select(&mut self, row: DisplayRow) {
+        match row {
+            DisplayRow::R0 => self.write_cmd(0x80),
+            DisplayRow::R1 => self.write_cmd(0xC0)
+        }
     }
 
     pub fn write_string(&mut self, txt: &str) {
