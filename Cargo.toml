@@ -1,5 +1,5 @@
 [package]
-name = "hd44780_test"
+name = "hd44780"
 version = "0.1.0"
 authors = [ "Michael Bohn <spaceodyssey@gmx.de>" ]
 description = "Rust library to control a Hitachi HD44780"
