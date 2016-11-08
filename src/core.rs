@@ -109,5 +109,8 @@ impl HD44780 {
         for i in 0..len {
             self.write_data(bytes[i]);
         }
+        for _i in (len-1)..17 {
+            self.write_data(0x20); //pad rest of line with blanks
+        }
     }
 }
