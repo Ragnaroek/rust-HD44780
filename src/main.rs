@@ -8,6 +8,7 @@ fn main() {
     let host = RaspberryPiBPlus::new();
     let mut display = HD44780::new(Box::new(host));
 
-    display.init();
+    display.init().unwrap();
+    display.write_string("override_me!");
     display.write_string("hello!");
 }

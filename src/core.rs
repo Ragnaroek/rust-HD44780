@@ -1,5 +1,6 @@
 use std;
 use std::time::Duration;
+use std::io::Error;
 use super::hosts::{HD44780Host, Mode};
 
 pub struct HD44780 {
@@ -11,8 +12,16 @@ impl HD44780 {
         return HD44780 {host: h};
     }
 
-    pub fn init(&mut self) {
-        self.host.init();
+    pub fn init(&mut self) -> Result<(), Error> {
+        try!(self.host.init());
+
+        self.write_cmd(0x33);
+        self.write_cmd(0x32);
+        self.write_cmd(0x28);
+        self.write_cmd(0x0C);
+        self.write_cmd(0x06);
+        self.write_cmd(0x01);
+        Ok(())
     }
 
     fn delay(&self) {
@@ -34,8 +43,16 @@ impl HD44780 {
         self.delay();
     }
 
-    fn write_byte(&mut self, b: u8) {
-        self.host.rs(Mode::Data);
+    fn write_cmd(&mut self, b: u8) {
+        self.write_byte_in_mode(b, Mode::Command);
+    }
+
+    fn write_data(&mut self, b: u8) {
+        self.write_byte_in_mode(b, Mode::Data)
+    }
+
+    fn write_byte_in_mode(&mut self, b: u8, mode: Mode) {
+        self.host.rs(mode);
         self.reset_data();
 
         if b&0x10==0x10 {
@@ -78,7 +95,7 @@ impl HD44780 {
             txt.len()
         };
         for i in 0..len {
-            self.write_byte(bytes[i]);
+            self.write_data(bytes[i]);
         }
     }
 }

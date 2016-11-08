@@ -36,10 +36,13 @@ impl RaspberryPiBPlus {
 }
 
 fn io(file_opt: &mut Option<File>, b: bool) {
-    let out = if b { b"1\n"} else {b"0\n"};
+    let out = if b { b"1"} else {b"0"};
     match *file_opt {
-        Some(ref mut file) => {file.write(out); ()},
-        None => println!("io {:?} not writable", file_opt)
+        Some(ref mut file) => {
+            file.write_all(out).unwrap();
+            file.flush().unwrap();
+            println!("wrote {:?} to {:?}", out, file)},
+        None => println!("some io not writable")
     }
     return;
 }
