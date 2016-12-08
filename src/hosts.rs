@@ -1,7 +1,7 @@
-
 use std::fs::OpenOptions;
 use std::fs::File;
 use std::io::{Write, Error};
+use std::path::Path;
 
 pub enum Mode {
     Command,
@@ -63,23 +63,29 @@ impl RaspberryPiBPlus {
     fn try_open_io(&mut self) -> Result<(), Error> {
         let mut o = OpenOptions::new();
         let fso = o.write(true);
-        if self.rs.is_none() {
-            self.rs = Some(try!(fso.open("/sys/class/gpio/gpio7/value")));
+        let gpio7 = Path::new("/sys/class/gpio/gpio7/value");
+        if gpio7.exists() {
+            self.rs = Some(try!(fso.open(gpio7)));
         }
-        if self.enable.is_none() {
-            self.enable = Some(try!(fso.open("/sys/class/gpio/gpio8/value")));
+        let gpio8 = Path::new("/sys/class/gpio/gpio8/value");
+        if gpio8.exists() {
+            self.enable = Some(try!(fso.open(gpio8)));
         }
-        if self.data4.is_none() {
-            self.data4 = Some(try!(fso.open("/sys/class/gpio/gpio25/value")));
+        let gpio25 = Path::new("/sys/class/gpio/gpio25/value");
+        if gpio25.exists() {
+            self.data4 = Some(try!(fso.open(gpio25)));
         }
-        if self.data5.is_none() {
-            self.data5 = Some(try!(fso.open("/sys/class/gpio/gpio24/value")));
+        let gpio24 = Path::new("/sys/class/gpio/gpio24/value");
+        if gpio24.exists() {
+            self.data5 = Some(try!(fso.open(gpio24)));
         }
-        if self.data6.is_none() {
-            self.data6 = Some(try!(fso.open("/sys/class/gpio/gpio23/value")));
+        let gpio23 = Path::new("/sys/class/gpio/gpio23/value");
+        if gpio23.exists() {
+            self.data6 = Some(try!(fso.open(gpio23)));
         }
-        if self.data7.is_none() {
-            self.data7 = Some(try!(fso.open("/sys/class/gpio/gpio18/value")));
+        let gpio18 = Path::new("/sys/class/gpio/gpio18/value");
+        if gpio18.exists() {
+            self.data7 = Some(try!(fso.open(gpio18)));
         }
         return Ok(());
     }
