@@ -1,6 +1,6 @@
 [package]
 name = "hd44780"
-version = "0.2.1"
+version = "0.2.2"
 authors = [ "Michael Bohn <spaceodyssey@gmx.de>" ]
 description = "Rust library to control a Hitachi HD44780"
 license = "GPL-3.0"

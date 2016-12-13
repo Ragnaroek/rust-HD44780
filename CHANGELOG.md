@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.2]
+### Fixed
+- removed timeout after gpio init (did not fix the problem)
+
 ## [0.2.1]
 ### Fixed
 - Wait after gpio init (this is a test whether the garbaged display bug

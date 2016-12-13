@@ -131,8 +131,6 @@ impl HD44780Host for RaspberryPiBPlus {
         try!(self.try_open_io());
         try!(self.init_out_dir());
 
-        // Test: Wait after init (mabye reduce this value to a lower value?)
-        thread::sleep(time::Duration::from_millis(500));
         return Ok(());
     }
 
