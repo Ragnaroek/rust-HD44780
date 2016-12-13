@@ -2,7 +2,6 @@ use std::fs::OpenOptions;
 use std::fs::File;
 use std::io::{Write, Error};
 use std::path::Path;
-use std::{thread, time};
 
 pub enum Mode {
     Command,
