@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## [0.2.1]
+### Fixed
+- Wait after gpio init (this is a test whether the garbaged display bug
+  will be fixed by this)
+
 ## [0.2.0]
 ### Added
 - auto init gpio pins

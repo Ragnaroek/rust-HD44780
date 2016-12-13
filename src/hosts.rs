@@ -2,6 +2,7 @@ use std::fs::OpenOptions;
 use std::fs::File;
 use std::io::{Write, Error};
 use std::path::Path;
+use std::{thread, time};
 
 pub enum Mode {
     Command,
@@ -129,6 +130,9 @@ impl HD44780Host for RaspberryPiBPlus {
         try!(self.init_gpio());
         try!(self.try_open_io());
         try!(self.init_out_dir());
+
+        // Test: Wait after init (mabye reduce this value to a lower value?)
+        thread::sleep(time::Duration::from_millis(500));
         return Ok(());
     }
 
